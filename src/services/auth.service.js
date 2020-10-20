@@ -11,9 +11,9 @@ export default class AuthService {
     
         this.config = { //Config object used to initalise the MSAL V2 Client
             auth: {
-                clientId: 'eba23c0b-1e86-4f68-b1d2-9c54d96083de',
+                clientId: 'Replace me with a client ID From the APP Registration',
                 redirectUri: window.location.origin, //defaults to application start page
-                authority:'https://login.microsoftonline.com/1c302616-bc6a-45a6-9c07-838c89d55003',
+                authority:'https://login.microsoftonline.com/Replace me with the tenant ID From the APP Registration',
                 postLogoutRedirectUri: window.location.origin
             }
         };
