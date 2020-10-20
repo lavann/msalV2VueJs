@@ -27,7 +27,7 @@ export default {
       msg: "HMSAL V2 with Vue JS - An Example",
       currentUser:null,
       userProfile: null,
-      graph: false,
+      graph: false, //use to toggle buttons in UI
       login: false //use to toggle buttons in UI
       }
     }
