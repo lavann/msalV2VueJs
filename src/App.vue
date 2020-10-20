@@ -22,7 +22,7 @@ import AuthService from './services/auth.service';
 import GraphService from './services/graph.service';
 export default {
   name: "App",
-  data: function() {
+  data: function() { //when a vue instance is created, it will add all the properties found in the data function to the system. These properties are then available to the application
     return {
       msg: "HMSAL V2 with Vue JS - An Example",
       currentUser:null,
@@ -31,7 +31,7 @@ export default {
       login: false //use to toggle buttons in UI
       }
     }
-    ,created: function() {
+    ,created: function() {  //created hook that allows the code to be run , you cannot manipulate the dom as it has not been mounted, you would need to use mounted()
       this.authService = new AuthService();
       this.graphService = new GraphService();
       
