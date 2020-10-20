@@ -13,7 +13,7 @@ export default class AuthService {
             auth: {
                 clientId: 'Replace me with a client ID From the APP Registration',
                 redirectUri: window.location.origin, //defaults to application start page
-                authority:'https://login.microsoftonline.com/Replace me with the tenant ID From the APP Registration',
+                authority:'https://login.microsoftonline.com/Replace me with the tenant ID',
                 postLogoutRedirectUri: window.location.origin
             }
         };

@@ -4,7 +4,7 @@
         <h1>{{ msg }}</h1>
             <button @click="logIn" type="button" v-if="!currentUser">Login</button>
             <button @click="callGraphApi" type="button" v-if="currentUser">
-              Call Graph's /me API
+              Graph API
             </button>
             <button @click="logOut" type="button" v-if="currentUser">
               Logout
