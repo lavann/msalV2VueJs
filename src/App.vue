@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-        <h1>{{ msg }}</h1>
+        <h1>{{ welcomeMessage }}</h1>
             <button @click="logIn" type="button" v-if="!currentUser">Login</button>
             <button @click="callGraphApi" type="button" v-if="currentUser">
               Graph API
@@ -24,7 +24,7 @@ export default {
   name: "App",
   data: function() { //when a vue instance is created, it will add all the properties found in the data function to the system. These properties are then available to the application
     return {
-      msg: "HMSAL V2 with Vue JS - An Example",
+      welcomeMessage: "MSAL V2 with Vue JS - An Example",
       currentUser:null,
       userProfile: null,
       graph: false, //use to toggle buttons in UI
