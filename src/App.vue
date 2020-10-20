@@ -1,19 +1,88 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="./assets/logo.png" />
+        <h1>{{ msg }}</h1>
+            <button @click="logIn" type="button" v-if="!currentUser">Login</button>
+            <button @click="callGraphApi" type="button" v-if="currentUser">
+              Call Graph's /me API
+            </button>
+            <button @click="logOut" type="button" v-if="currentUser">
+              Logout
+            </button>
+      <h3 v-if="currentUser">Hello {{ this.currentUser }}</h3>
+      <pre v-if="userProfile">{{ JSON.stringify(userProfile, null, 4) }}</pre>
+      <p v-if="login">Login failed</p>
+      <p v-if="graph">Graph API call failed</p>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
+import AuthService from './services/auth.service';
+import GraphService from './services/graph.service';
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: "App",
+  data: function() {
+    return {
+      msg: "HMSAL V2 with Vue JS - An Example",
+      currentUser:null,
+      userProfile: null,
+      graph: false,
+      login: false //use to toggle buttons in UI
+      }
+    }
+    ,created: function() {
+      this.authService = new AuthService();
+      this.graphService = new GraphService();
+      
+      console.log('in created');
+  },
+  methods: {
+    callGraphApi() { //Call the Graph API and Return the User Profile
+       this.graph = false;
+      this.authService.getToken().then(
+        token => {
+          console.log(token);
+          this.graphService.getUserProfile(token.accessToken).then(
+            data => {
+              this.userProfile = data;
+            },
+            error => {
+              console.error(error);
+              this.graph = true;
+            }
+          );
+        },
+        error => {
+          console.error(error);
+        }
+      );
+      }
+    ,
+    logOut() {
+        this.authService.logout();
+    },
+
+    logIn() {
+      this.login = false;
+      this.authService.login().then(
+        user => {
+          if (user) {
+            this.currentUser = user[0].name;
+            console.log(this.currentUser);
+          } else {
+            this.login = true;
+          }
+        },
+        () => {
+          this.login = true;
+        }
+      );
+    
+    }
   }
-}
+    
+};
 </script>
 
 <style>
