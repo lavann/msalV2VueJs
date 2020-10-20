@@ -28,7 +28,7 @@ export default {
       currentUser:null,
       userProfile: null,
       graph: false, //use to toggle buttons in UI
-      login: false //use to toggle buttons in UI
+      login: false //use to toggle buttons in UI  
       }
     }
     ,created: function() {  //created hook that allows the code to be run , you cannot manipulate the dom as it has not been mounted, you would need to use mounted()
